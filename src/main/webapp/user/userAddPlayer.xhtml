@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../decorator.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            STRONA dodawnia zawodnika
+            <h:form>
+                <h1><h:outputText value="Create"/></h1>
+                <h:panelGrid columns="2" >
+                    <h:outputLabel value="First Name: " for="firstName" />
+                    <h:inputText id="firstName" value="#{playerController.player.firstName}" title="First Name" />
+                    <h:outputLabel value="Last name: " for="lastName" />
+                    <h:inputText id="lastName" value="#{playerController.player.lastName}" title="Last Name" />
+                    <h:outputLabel value="Country: " for="country" />
+                    <h:inputText id="country" value="#{playerController.player.country}" title="country" />
+                    <h:outputLabel value="Number: " for="number" />
+                    <h:inputText id="number" value="#{playerController.player.number}" title="number" />
+                    <h:outputLabel value="Prefered leg: " for="preferedLeg" />
+                    <h:selectOneMenu value = "#{playerController.player.preferedLeg}"> 
+                        <f:selectItem itemValue = "LEFT" itemLabel = "Left" /> 
+                        <f:selectItem itemValue = "RIGHT" itemLabel = "Right" /> 
+                        <f:selectItem itemValue = "BOTH" itemLabel = "Both" />    
+                    </h:selectOneMenu> 	
+                    <h:outputLabel value="Prefered position: " for="preferedPosition" />
+                    <h:selectOneMenu value = "#{playerController.player.preferedPosition}"> 
+                        <f:selectItem itemValue = "GK" itemLabel = "GK" /> 
+                        <f:selectItem itemValue = "LB" itemLabel = "LB" /> 
+                        <f:selectItem itemValue = "RB" itemLabel = "RB" />
+                        <f:selectItem itemValue = "CB" itemLabel = "CB" /> 
+                        <f:selectItem itemValue = "LW" itemLabel = "LW" /> 
+                        <f:selectItem itemValue = "RW" itemLabel = "RB" />
+                        <f:selectItem itemValue = "CM" itemLabel = "CM" />
+                        <f:selectItem itemValue = "CF" itemLabel = "CF" /> 
+                    </h:selectOneMenu> 
+                    
+                    <h:outputLabel value="UE Citizen: " for="uecitizen" />
+                    <h:selectBooleanCheckbox id="uecitizen" value="#{playerController.player.UEcitizen}" title="UE Citizen" />
+                </h:panelGrid>
+
+
+                <h:commandButton value="Zapisz" action="#{playerController.addPlayer()}" />
+
+
+            </h:form>
+        </h:form>
+    </ui:define>
+
+
+
+</ui:composition>

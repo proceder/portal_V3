@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../decorator.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+        <h:form styleClass="centered">
+            <h3>Panel logowania</h3>
+            <div align="center">
+     
+                <h:panelGrid columns="2">
+                        <h:outputText value="Username" />
+                        <h:inputText id="username" />
+
+                        <h:outputText value="Password" />
+                        <h:inputSecret id="password" />
+
+                    </h:panelGrid>
+                    <!--<h:panelGrid columns="2" >-->
+                    <h:commandButton action="#{personController.login()}" value="Zaloguj" />
+                    <h:outputText value="(Kliknij aby zalogować bez podawania danych)" style="font-size: 10" />
+            </div>
+            <br></br><br></br><br></br><br></br>
+
+            <h:commandButton action="#{personController.register()}" value="Rejestracja" />
+            <h:outputText value="Nie masz jeszcze konta?" />
+            <!--</h:panelGrid>-->
+
+
+            <!--<h:message for="username"></h:message>-->
+            <!--<h:message for="password"></h:message>-->
+        </h:form>
+
+
+
+    </ui:define>
+
+    <!--        <h:form prependId="false" >
+                <h3>PRosze wpr dane do logowania</h3>
+                <table>
+                    <tr>
+                        <td>Nazwa:</td>
+                        <td><h:inputText value="#{user.name}" id="name"/></td>
+                    </tr>
+    
+                    <tr>
+                        <td>Haslo:</td>
+                        <td><h:inputSecret value="#{user.password}" id="password"/></td>
+                    </tr>
+                </table>
+                <p>
+                    <h:commandButton value="Zaloguj" >
+                        <f:ajax execute="name password" render="out"/>
+                    </h:commandButton>
+                </p>
+                <h3><h:outputText id="out" value="#{user.greeting}"/> </h3>
+            </h:form>-->
+
+    <!--            <h:form>
+                    <p:growl id="messages" showDetail="true"/>
+    
+                    <p:menuButton value="Options">
+                        <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                        <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                        <p:menuitem value="Delete" actionListener="#{menuView.delete}" ajax="false" icon="ui-icon-close"/>
+                        <p:separator />
+                        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>
+                    </p:menuButton>
+                </h:form>-->
+
+</ui:composition>

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../decorator.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>JSF tutorial</title>		
+        <h:outputStylesheet library = "css" name = "cssLayout.css"  /> 	
+    </h:head>
+    <ui:define name="content">
+        <h:outputText value="Tutaj będą dostępne do wglądu statystyki zawodników" />
+        <f:view>
+            <h:form>
+                <ui:remove>
+                    <h:form>
+                        <h:inputText value="#{playerController.searchString}" />
+                        <p:commandButton value="Szukaj" action="#{navigationController.goToSearchResult()}" />
+                    </h:form>
+                </ui:remove>
+                <h1><h:outputText value="List"/></h1>
+                <h:commandButton value="Zapisz zmiany" action="#{playerController.save()}" />
+
+                <h:dataTable value="${playerController.playersList}" var="player1"
+                             styleClass="players"
+                             headerClass="playersHeader"
+                             rowClasses="oddRow,evenRow">
+                    <ui:remove>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{player1.id}"/>
+                        </h:column>
+                    </ui:remove>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="First Name"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.firstName}" rendered="#{not player1.editable}"/>
+                        <h:inputText value="#{player1.firstName}" rendered="#{player1.editable}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last Name"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.lastName}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Number"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.number}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Country"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.country}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prefered Position"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.preferedPosition}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prefered Leg"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.preferedLeg}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="UE Citizen"/>
+                        </f:facet>
+                        <h:outputText value="#{player1.UEcitizen}" />
+                    </h:column>
+
+                    <h:column rendered="#{personController.logged}">
+                        <f:facet name="header">
+                            <h:outputText value="Edycja" />
+                        </f:facet>
+                        <!--<h:commandLink value="Edytuj" action="#{playerController.goToEdition(player)}" />-->
+                        <h:selectBooleanCheckbox value="#{player1.editable}" onclick="submit()" />
+
+                    </h:column>
+                    <h:column rendered="#{personController.logged}">
+                        <f:facet name="header">
+                            <h:outputText value="Usuń" />
+                        </f:facet>
+                        <h:commandButton value="Usuń" action="#{playerController.deleteRow(player1)}" />
+                    </h:column>
+
+                </h:dataTable>
+
+
+            </h:form>
+        </f:view>
+
+    </ui:define>
+
+</ui:composition>
